@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bbs">
+
+	<insert id="insertBoard" parameterType="kr.ac.sungkyul.mysite.vo.BoardVo">
+		
+		<selectKey resultType="java.lang.Long" keyProperty="no" order="BEFORE">
+			<![CDATA[
+		    	SELECT seq_bbs.nextVal as no FROM DUAL
+			]]>
+		</selectKey>
+		
+		<![CDATA[		
+			INSERT into BBS values (#{no }, #{title }, #{content }, sysdate)
+		]]>
+	
+	</insert>
+	
+	<insert id="insertAttachFile" parameterType="kr.ac.sungkyul.mysite.vo.AttachFileVo">
+		<![CDATA[
+			INSERT into BBS_FILE values ( seq_bbs_file.nextVal, #{bbsNo }, #{path }, #{orgName }, #{saveName }, #{fileSize } )
+		]]>
+		
+	
+	</insert>
+	
+	<select id="listBoard" resultType="kr.ac.sungkyul.mysite.vo.BoardVo">
+		<![CDATA[
+		SELECT no, title, content, to_char(regdate, 'yyyy"년" mm"월" dd"일" am hh:mi:ss') as regdate FROM BBS
+		 
+		]]>
+	</select>
+	
+	<select id="selectBoard" parameterType="Long" resultType="kr.ac.sungkyul.mysite.vo.BoardVo">
+		<![CDATA[
+		SELECT no, title, content FROM BBS WHERE no= #{no }
+		 
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="kr.ac.sungkyul.mysite.vo.BoardVo">
+		<![CDATA[
+		UPDATE BBS SET title= #{title }, content= #{content } WHERE no= #{no }
+		 
+		]]>
+	
+	</update>
+	
+	<delete id="deleteBoard" parameterType="Long">
+		<![CDATA[
+		DELETE FROM BBS WHERE no= #{no }
+		 
+		]]>
+	
+	</delete>
+
+
+</mapper>

@@ -23,21 +23,22 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td></td>
+						<td>${boardVo.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								
+								${boardVo.content }
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="">글수정</a>
+					<a href="modifyform?no=${boardVo.no }">글수정</a>
+					<a href="deleteBoard?no=${boardVo.no }">글삭제</a>
 				</div>
-			</div>
+			</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 		</div>
 		<c:import url='/WEB-INF/views/include/navi.jsp'/>
 		<c:import url='/WEB-INF/views/include/footer.jsp'/>

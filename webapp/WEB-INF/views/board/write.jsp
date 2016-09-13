@@ -13,7 +13,7 @@
 		<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="register">
+				<form class="board-form" method="post" action="register"  enctype="multipart/form-data">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글쓰기</th>
@@ -28,6 +28,13 @@
 								<textarea id="content" name="content"></textarea>
 							</td>
 						</tr>
+						
+						<tr>
+							<td>
+								<input type="file" name="file">
+							</td>							
+						</tr>
+						
 					</table>
 					<div class="bottom">
 						<a href="list">취소</a>
